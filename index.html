@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#11131b">
+<meta name="description" content="ClearCut AI helps remove image backgrounds and export transparent PNG images in high resolution.">
+<meta property="og:title" content="ClearCut AI — Background Remover">
+<meta property="og:description" content="Remove image backgrounds and export transparent PNGs.">
+<title>ClearCut AI — Background Remover</title>
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#f5f7fb,#10131a);--panel:light-dark(#fff,#191e29);--text:light-dark(#171b2b,#f4f6fb);--muted:light-dark(#697287,#a8b0c2);--line:light-dark(#e0e5ef,#30384a);--accent:#7657f6;--accent2:#19b8a6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input{font:inherit}
+main{max-width:1050px;margin:auto;padding:28px 20px 50px}.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px}.brand{display:flex;gap:10px;align-items:center;font-weight:850;font-size:20px;letter-spacing:-.5px}.logo{width:35px;height:35px;border-radius:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:white;font-size:20px}.pill{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:7px 11px;border-radius:99px}
+.hero{text-align:center;max-width:700px;margin:0 auto 30px}.eyebrow{display:inline-flex;gap:7px;align-items:center;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}.hero h1{font-size:clamp(36px,7vw,64px);line-height:1.04;letter-spacing:-2.7px;margin:15px 0}.gradient{background:linear-gradient(90deg,#7657f6,#17b7a5);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:16px;line-height:1.7;margin:0 auto;max-width:560px}
+.workspace{display:grid;grid-template-columns:1fr;gap:16px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 45px #1018280a}.drop{min-height:280px;border:1.5px dashed light-dark(#c8cde0,#434c61);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px;transition:.2s;background:light-dark(#fafbff,#151a24)}.drop.drag{border-color:var(--accent);background:light-dark(#f1edff,#211d36)}.upload-icon{width:62px;height:62px;border-radius:20px;background:light-dark(#eee9ff,#302750);color:var(--accent);display:grid;place-items:center;font-size:28px;margin-bottom:15px}.drop h2{font-size:20px;margin:0 0 7px}.drop p{font-size:13px;color:var(--muted);margin:0 0 18px}.btn{border:0;border-radius:12px;padding:12px 18px;background:var(--accent);color:white;font-weight:750;cursor:pointer;font-size:14px;box-shadow:0 5px 15px #7657f633}.btn:disabled{opacity:.45;cursor:not-allowed}.subtle{background:transparent;border:1px solid var(--line);color:var(--text);box-shadow:none}.small{font-size:12px;color:var(--muted);margin-top:12px}.preview{display:none}.preview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}.preview-head h2{font-size:16px;margin:0}.compare-wrap{position:relative;width:100%;max-width:760px;margin:auto;border:1px solid var(--line);border-radius:15px;overflow:hidden;min-height:250px;display:grid;place-items:center;background-color:light-dark(#fff,#222938);background-image:linear-gradient(45deg,light-dark(#e9edf5,#303747) 25%,transparent 25%),linear-gradient(-45deg,light-dark(#e9edf5,#303747) 25%,transparent 25%),linear-gradient(45deg,transparent 75%,light-dark(#e9edf5,#303747) 75%),linear-gradient(-45deg,transparent 75%,light-dark(#e9edf5,#303747) 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}.compare-img{display:block;max-width:100%;max-height:520px;width:auto;height:auto;object-fit:contain}.layer{position:absolute;inset:0;overflow:hidden;display:flex;justify-content:center;align-items:center;clip-path:inset(0 50% 0 0);pointer-events:none}.layer img{max-width:100%;max-height:520px;width:auto;height:auto;object-fit:contain;flex:none}.divider-line{position:absolute;top:0;bottom:0;left:50%;width:2px;background:white;box-shadow:0 0 0 1px #0003;pointer-events:none}.divider-line:after{content:"↔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:white;color:#30245f;font-weight:900;box-shadow:0 2px 10px #0003}.compare-tags{display:flex;justify-content:space-between;gap:10px;margin:12px 0 5px;font-size:12px;color:var(--muted)}.slider-label{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:12px;color:var(--muted)}.slider-label input{width:100%;accent-color:var(--accent)}.status{display:none;margin-top:16px;border-radius:12px;padding:13px 15px;background:light-dark(#f1edff,#25203c);font-size:13px;color:var(--text)}.bar{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:9px}.bar span{display:block;width:8%;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.meta{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:18px}.feature{border:1px solid var(--line);border-radius:16px;padding:17px;background:var(--panel)}.feature b{display:block;font-size:14px;margin:9px 0 5px}.feature p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}.ficon{font-size:21px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px;line-height:1.7}.hidden{display:none!important}
+@media(max-width:600px){main{padding:18px 13px 35px}.nav{margin-bottom:34px}.hero h1{letter-spacing:-1.6px}.panel{padding:13px}.drop{min-height:250px}.features{grid-template-columns:1fr}.pill{display:none}.compare-wrap{min-height:200px}.compare-img,.layer img{max-height:420px}}
+</style>
+</head>
+<body>
+<main>
+<header class="nav"><div class="brand"><span class="logo">✦</span> ClearCut <span class="gradient">AI</span></div><span class="pill">FREE BACKGROUND REMOVER</span></header>
+<section class="hero"><div class="eyebrow">✧ AI IMAGE TOOL</div><h1>Background gone.<br><span class="gradient">Magic stays.</span></h1><p>ဓာတ်ပုံထဲက background ကို AI နဲ့ဖယ်ရှားပြီး အရည်အသွေးမြင့် transparent PNG အဖြစ် သိမ်းနိုင်ပါတယ်။</p></section>
+<section class="workspace">
+<div class="panel" id="uploadPanel"><div class="drop" id="drop">
+<div class="upload-icon">↑</div><h2>ဓာတ်ပုံကို ဒီနေရာမှာ ထည့်ပါ</h2><p>Drag & drop လုပ်ပါ၊ ဒါမှမဟုတ် gallery ကနေ ရွေးပါ</p>
+<button class="btn" id="chooseBtn" type="button">ဓာတ်ပုံရွေးမယ်</button><div class="small">PNG, JPG, WebP · အများဆုံး 15 MB</div>
+<input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+</div></div>
+<div class="panel preview" id="previewPanel">
+<div class="preview-head"><h2>Before / After နှိုင်းယှဉ်မှု</h2><button class="btn subtle" id="resetBtn" type="button">တခြားပုံရွေးမယ်</button></div>
+<div class="compare-wrap" id="compareWrap"><img class="compare-img" id="original" alt="မူရင်းဓာတ်ပုံ"><div class="layer" id="resultLayer"><img id="result" alt="Background ဖယ်ပြီးသားပုံ"></div><div class="divider-line" id="dividerLine"></div></div>
+<div class="compare-tags"><span>မူရင်းပုံ</span><span>Background ဖယ်ပြီး</span></div>
+<label class="slider-label" for="compareSlider"><span>နှိုင်းယှဉ်ရန်</span><input id="compareSlider" type="range" min="0" max="100" value="50" disabled><span id="sliderValue">50%</span></label>
+<div class="meta" id="imageMeta"></div>
+<div class="status" id="status" role="status" aria-live="polite"><span id="statusText">ပြင်ဆင်နေသည်...</span><div class="bar"><span id="progress"></span></div></div>
+<div class="actions"><button class="btn" id="removeBtn" type="button">✦ Background ဖယ်မယ်</button><button class="btn subtle" id="downloadBtn" type="button" disabled>↓ HD PNG သိမ်းမယ်</button></div>
+<div class="meta">HD PNG ကို မူရင်းပုံအရွယ်အစားအတိုင်း သိမ်းရန် ကြိုးစားပါမည်။ အမှန်တကယ် output resolution သည် AI library နှင့် input ပုံပေါ် မူတည်နိုင်သည်။</div>
+</div>
+</section>
+<section class="features">
+<div class="feature"><span class="ficon">✦</span><b>AI အလိုအလျောက်ဖယ်ရှား</b><p>ပုံထဲက အဓိကအရာဝတ္ထုကို AI နဲ့ ခွဲထုတ်ပါ။</p></div>
+<div class="feature"><span class="ficon">◫</span><b>Before / After Slider</b><p>Slider ကို ဆွဲပြီး မူရင်းပုံနဲ့ result ကို တိုက်ရိုက်နှိုင်းယှဉ်ပါ။</p></div>
+<div class="feature"><span class="ficon">↗</span><b>HD Transparent PNG</b><p>Transparent PNG အဖြစ် သိမ်းပြီး ဒီဇိုင်းနဲ့ product listing တွေမှာ အသုံးပြုပါ။</p></div>
+</section>
+<div class="footer">ClearCut AI · Hosting-ready static website prototype<br>ပထမဆုံးအသုံးပြုချိန်မှာ AI model download လုပ်ရန် အင်တာနက်လိုအပ်နိုင်ပါတယ်။</div>
+</main>
+<script type="module">
+const $=id=>document.getElementById(id);
+let inputFile=null, originalUrl=null, resultUrl=null, remover=null, busy=false, originalDimensions=null;
+const drop=$('drop'), fileInput=$('fileInput');
+$('chooseBtn').addEventListener('click',()=>fileInput.click());
+$('removeBtn').addEventListener('click',removeBackground);
+$('resetBtn').addEventListener('click',reset);
+$('compareSlider').addEventListener('input',updateCompare);
+$('downloadBtn').addEventListener('click',()=>{
+ if(!resultUrl)return;
+ const a=document.createElement('a');a.href=resultUrl;a.download='clearcut-ai-transparent-hd.png';document.body.appendChild(a);a.click();a.remove();
+});
+fileInput.addEventListener('change',e=>{if(e.target.files[0])loadFile(e.target.files[0]);});
+for(const event of ['dragenter','dragover'])drop.addEventListener(event,e=>{e.preventDefault();drop.classList.add('drag');});
+for(const event of ['dragleave','drop'])drop.addEventListener(event,e=>{e.preventDefault();drop.classList.remove('drag');});
+drop.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)loadFile(f);});
+function updateCompare(){
+ const v=Number($('compareSlider').value);
+ $('resultLayer').style.clipPath=`inset(0 ${100-v}% 0 0)`;
+ $('dividerLine').style.left=v+'%';$('sliderValue').textContent=v+'%';
+}
+function loadFile(file){
+ if(!file.type.startsWith('image/')){alert('Image ဖိုင်ကိုသာ ရွေးပေးပါ။');return;}
+ if(file.size>15*1024*1024){alert('ဖိုင်အရွယ်အစား 15 MB ထက်နည်းတဲ့ပုံကို ရွေးပေးပါ။');return;}
+ inputFile=file;
+ if(originalUrl)URL.revokeObjectURL(originalUrl);if(resultUrl)URL.revokeObjectURL(resultUrl);
+ originalUrl=URL.createObjectURL(file);resultUrl=null;originalDimensions=null;
+ $('original').src=originalUrl;$('result').removeAttribute('src');
+ $('original').onload=()=>{originalDimensions={width:$('original').naturalWidth,height:$('original').naturalHeight};$('imageMeta').textContent=`မူရင်းအရွယ်အစား: ${originalDimensions.width} × ${originalDimensions.height}px · ${(file.size/1024/1024).toFixed(2)} MB`;};
+ $('uploadPanel').classList.add('hidden');$('previewPanel').style.display='block';
+ $('downloadBtn').disabled=true;$('removeBtn').disabled=false;$('compareSlider').disabled=true;
+ $('status').style.display='none';$('resultLayer').style.clipPath='inset(0 50% 0 0)';$('dividerLine').style.left='50%';$('compareSlider').value=50;updateCompare();
+}
+function reset(){
+ if(busy)return;
+ if(originalUrl)URL.revokeObjectURL(originalUrl);if(resultUrl)URL.revokeObjectURL(resultUrl);
+ inputFile=null;originalUrl=null;resultUrl=null;originalDimensions=null;fileInput.value='';
+ $('previewPanel').style.display='none';$('uploadPanel').classList.remove('hidden');
+ $('progress').style.width='8%';$('status').style.display='none';$('imageMeta').textContent='';
+}
+async function removeBackground(){
+ if(!inputFile||busy)return;busy=true;
+ $('removeBtn').disabled=true;$('downloadBtn').disabled=true;$('status').style.display='block';
+ $('statusText').textContent='AI ကို စတင်ပြင်ဆင်နေပါတယ်… ပထမဆုံးအကြိမ်မှာ အချိန်ယူနိုင်ပါတယ်။';$('progress').style.width='12%';
+ try{
+  if(!remover){
+   $('statusText').textContent='AI library နဲ့ model ကို download လုပ်နေပါတယ်…';
+   const mod=await import('https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.5/+esm');
+   remover=mod.removeBackground;
+  }
+  $('progress').style.width='30%';
+  const blob=await remover(inputFile,{progress:(key,current,total)=>{
+   if(total>0){const p=Math.min(95,30+Math.round(current/total*60));$('progress').style.width=p+'%';}
+   $('statusText').textContent='AI processing: '+key;
+  }});
+  if(resultUrl)URL.revokeObjectURL(resultUrl);
+  resultUrl=URL.createObjectURL(blob);$('result').src=resultUrl;
+  $('result').onload=()=>{
+   const rw=$('result').naturalWidth,rh=$('result').naturalHeight;
+   $('imageMeta').textContent=`မူရင်း: ${originalDimensions?.width||'—'} × ${originalDimensions?.height||'—'}px · Output: ${rw} × ${rh}px · ${(blob.size/1024/1024).toFixed(2)} MB`;
+  };
+  $('progress').style.width='100%';$('statusText').textContent='ပြီးပါပြီ။ Slider နဲ့ နှိုင်းယှဉ်ပြီး PNG သိမ်းနိုင်ပါပြီ။';
+  $('compareSlider').disabled=false;$('downloadBtn').disabled=false;updateCompare();
+ }catch(err){
+  console.error(err);$('statusText').textContent='မအောင်မြင်ပါ။ အင်တာနက်ချိတ်ဆက်မှု၊ browser compatibility နဲ့ model download ကို စစ်ဆေးပြီး ထပ်စမ်းပါ။';
+  $('progress').style.width='0%';
+ }finally{busy=false;$('removeBtn').disabled=false;}
+}
+</script>
+</body>
+</html>
